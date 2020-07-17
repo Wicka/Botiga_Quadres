@@ -1,10 +1,14 @@
 package es.franchise.dto;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +17,7 @@ public class Shop {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
+	@Column(name="idtiendas")
 	private int id;
 	
 	@Column(name = "nombre")	
@@ -21,12 +26,16 @@ public class Shop {
 	@Column(name = "capacidad")
 	private int capacity;
 	
+
+
+	
 	
 	
 	/**
 	 * @param id
 	 * @param nombre
-	 * @param capacity		
+	 * @param capacity	
+	 * @param pictures	
 	 */
 	
 	
@@ -34,7 +43,16 @@ public class Shop {
 	public Shop() {
 		
 	}
-	
+/*	
+	public Shop(int id, String name, int capacity, List<Picture> pictures, List<Artist> artists) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.capacity = capacity;
+		this.pictures = pictures;
+		this.artists = artists;
+	}
+*/
 	public int getId() {
 		return id;
 	}
@@ -59,6 +77,14 @@ public class Shop {
 		this.capacity = capacity;
 	}
 
+	
+
+
+	
+	@Override
+	public String toString() {
+		return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity + "]";
+	}
 	public Shop(int id, String name, int capacity) {
 	
 		this.id = id;
@@ -66,10 +92,7 @@ public class Shop {
 		this.capacity = capacity;
 	}
 
-	@Override
-	public String toString() {
-		return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity + ", getId()=" + getId() + ", getName()="
-				+ getName() + ", getCapacity()=" + getCapacity() + "]";
-	}
+	
+
 
 }
