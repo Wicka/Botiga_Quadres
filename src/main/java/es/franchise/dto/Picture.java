@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,20 +29,23 @@ public class Picture {
 	@Column(name="alta")
 	private Date date;
 	
-	@Column(name="Fk_autor")
-	private int fk_author;
+	@ManyToOne
+    @JoinColumn(name="Fk_autor")
+    private Artist artist;
 	
-	@Column(name="Fk_tienda")
-	private int fk_shop;
+	@ManyToOne
+    @JoinColumn(name="Fk_tienda")
+    private Shop shop;
+	
 
-	public Picture(int id, String title, double pvp, Date date, int fk_author, int fk_shop) {
+	public Picture(int id, String title, double pvp, Date date, Artist artist, Shop shop) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.pvp = pvp;
 		this.date = date;
-		this.fk_author = fk_author;
-		this.fk_shop = fk_shop;
+		this.artist = artist;
+		this.shop = shop;
 	}
 	
 	public Picture() {
@@ -79,30 +84,29 @@ public class Picture {
 		this.date = date;
 	}
 
-	public int getFk_author() {
-		return fk_author;
+	public Artist getArtist() {
+		return artist;
 	}
 
-	public void setFk_author(int fk_author) {
-		this.fk_author = fk_author;
+	public void setArtist(Artist artist) {
+		this.artist = artist;
 	}
 
-	public int getFk_shop() {
-		return fk_shop;
+	public Shop getShop() {
+		return shop;
 	}
 
-	public void setFk_shop(int fk_shop) {
-		this.fk_shop = fk_shop;
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 
 	@Override
 	public String toString() {
-		return "Picture [id=" + id + ", title=" + title + ", pvp=" + pvp + ", date=" + date + ", fk_author=" + fk_author
-				+ ", fk_shop=" + fk_shop + ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getPvp()="
-				+ getPvp() + ", getDate()=" + getDate() + ", getFk_author()=" + getFk_author() + ", getFk_shop()="
-				+ getFk_shop() + "]";
+		return "Picture [id=" + id + ", title=" + title + ", pvp=" + pvp + ", date=" + date + ", artist=" + artist
+				+ ", shop=" + shop + "]";
 	}
+
 	
-	
+
 	
 }
