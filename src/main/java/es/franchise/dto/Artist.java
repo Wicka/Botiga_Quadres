@@ -13,6 +13,7 @@ public class Artist {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
+	@Column(name="idpintores")
 	private int id;
 	
 	@Column(name="nombre")

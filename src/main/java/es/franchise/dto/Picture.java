@@ -15,6 +15,7 @@ public class Picture {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
+	@Column(name="idcuadros")
 	private int id;
 	
 	@Column(name="titulo")

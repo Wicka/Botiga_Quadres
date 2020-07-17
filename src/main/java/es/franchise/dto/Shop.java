@@ -27,6 +27,9 @@ public class Shop {
 	private int capacity;
 	
 
+  //  @OneToMany
+ //   @JoinColumn(name="idtiendas")
+  //  private List<Picture> pictures;
 
 	
 	
@@ -83,13 +86,26 @@ public class Shop {
 	
 	@Override
 	public String toString() {
-		return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity + "]";
+	//	return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity + "pictures" + pictures +  "]";
+		return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity  +  "]";
 	}
-	public Shop(int id, String name, int capacity) {
 	
+/*	public List<Picture> getPictures() {
+		return pictures;
+	}
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+	*/
+	
+	
+	public Shop(int id, String name, int capacity) {
+	//public Shop(int id, String name, int capacity, List<Picture> pictures) {
+
 		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
+//		this.pictures=pictures;
 	}
 
 	

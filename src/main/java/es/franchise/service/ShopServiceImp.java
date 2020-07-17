@@ -22,33 +22,26 @@ public class ShopServiceImp implements IShopService {
 	}
 
 	@Override
-	public Shop saveShop(Shop shop) {
-		// TODO Auto-generated method stub
-		return null;
+	public Shop saveShop(Shop shop) {		
+		return iShopDao.save(shop);
 	}
 
 	@Override
-	public Shop shopXID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Shop shopXID(int id) {		
+		return iShopDao.findById(id).get();
 	}
 
 	@Override
 	public Shop updateShop(Shop shop) {
-		// TODO Auto-generated method stub
-		return null;
+		return iShopDao.save(shop);
 	}
 
 	@Override
 	public void deleteShop(int id) {
-		// TODO Auto-generated method stub
+		iShopDao.deleteById(id);
 
 	}
 
-	@Override
-	public List<Picture> showPictures(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
