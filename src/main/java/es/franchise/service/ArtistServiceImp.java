@@ -23,25 +23,25 @@ public class ArtistServiceImp implements IArtistService {
 
 	@Override
 	public Artist saveArtist(Artist artist) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return iArtistDao.save(artist);
 	}
 
 	@Override
 	public Artist artistXID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return iArtistDao.findById(id).get();
 	}
 
 	@Override
 	public Artist updateArtist(Artist artist) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return iArtistDao.save(artist);
 	}
 
 	@Override
 	public void deleteArtist(int id) {
-		// TODO Auto-generated method stub
+		iArtistDao.deleteById(id);
 
 	}
 
