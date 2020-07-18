@@ -22,26 +22,22 @@ public class PictureServiceImp implements IPictureService {
 
 	@Override
 	public Picture savePicture(Picture picture) {
-		// TODO Auto-generated method stub
-		return null;
+		return iPictureDao.save(picture);
 	}
 
 	@Override
-	public Picture pictureXID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Picture pictureXID(int id) {		
+		return iPictureDao.findById(id).get();
 	}
 
 	@Override
 	public Picture updatePicture(Picture picture) {
-		// TODO Auto-generated method stub
-		return null;
+		return iPictureDao.save(picture);
 	}
 
 	@Override
-	public void deletePicture(int id) {
-		// TODO Auto-generated method stub
-
+	public void deletePicture(int id) {		
+		iPictureDao.deleteById(id);
 	}
 
 

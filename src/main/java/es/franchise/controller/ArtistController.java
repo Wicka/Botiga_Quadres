@@ -34,7 +34,7 @@ public class ArtistController {
 		return artistServiceImp.showArtists();
 	}
 
-	@GetMapping ("/artist/{id}")
+	@GetMapping ("/artists/{id}")
 	public Artist artistXID(@PathVariable(name="id")Integer id) {
 		Artist artistxid = new Artist();
 		artistxid = artistServiceImp.artistXID(id);
@@ -42,12 +42,12 @@ public class ArtistController {
 	}
 
 	
-	@PostMapping("/artist")
+	@PostMapping("/artists")
 	public Artist saveShop(@RequestBody Artist artist) {
 		return artistServiceImp.saveArtist(artist);
 	}
 	
-	@PutMapping("/artist/{id}")
+	@PutMapping("/artists/{id}")
 	public Artist updateArtist(@PathVariable(name="id")Integer id, @RequestBody Artist artist) {
 		
 		Artist artist_selected = new Artist();
@@ -66,7 +66,7 @@ public class ArtistController {
 		return artist_update;
 	}
 	
-	@DeleteMapping("/artist/{id}")
+	@DeleteMapping("/artists/{id}")
 	public void deleteArtist(@PathVariable(name="id") Integer id) {
 		artistServiceImp.deleteArtist(id);		
 	}
