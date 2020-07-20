@@ -12,29 +12,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="cuadros")
+@Table (name="pictures")
 public class Picture {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
-	@Column(name="idcuadros")
+	@Column(name="idpicture")
 	private int id;
 	
-	@Column(name="titulo")
+	@Column(name="title")
 	private String title;
 	
-	@Column(name="precio")
+	@Column(name="pvp")
 	private double pvp;
 	
-	@Column(name="alta")
+	@Column(name="date")
 	private Date date;
 	
 	@ManyToOne
-    @JoinColumn(name="Fk_autor")
+    @JoinColumn(name="idartist")
     private Artist artist;
 	
 	@ManyToOne
-    @JoinColumn(name="Fk_tienda")
+    @JoinColumn(name="idshop")
     private Shop shop;
 	
 

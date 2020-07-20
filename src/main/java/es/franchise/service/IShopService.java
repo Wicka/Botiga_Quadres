@@ -11,6 +11,9 @@ public interface IShopService {
 	public Shop saveShop(Shop shop);
 	public Shop shopXID(int id);
 	public Shop updateShop (Shop shop);
-	public void deleteShop(int id);	
+	public void deleteShop(int id);
+	public void deleteShopEmpty(int id);	
+	public void deleteAllShop();
+
 
 }

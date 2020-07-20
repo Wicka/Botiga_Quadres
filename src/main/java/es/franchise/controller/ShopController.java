@@ -64,9 +64,25 @@ public class ShopController {
 	@DeleteMapping("/shops/{id}")
 	public void deleteShop(@PathVariable(name="id")Integer id){
 		shopServiceImp.deleteShop(id);
+		//NO MIRO SI LA TIENDA TIENE CUADROS...SI EXISTEN CUADROS EN LA TBL CUADROS ASIGNADOS A ESA TIENDA
+	
 		
+	}
+	
+	@DeleteMapping("/shopsEmpty/{id}")
+	public void deleteShopIfEmpty(@PathVariable(name="id")Integer id){
+		
+		shopServiceImp.deleteShopEmpty(id);		
 		//RECORRO TABLA CUADROS EN BUSCA DEL ID DE TIENDA POR SI LA TIENDA NO ESTA VACIA ANTES DE ELIMINARNA
 		
+		
+	}
+	
+	
+	@DeleteMapping("/shopsAllScape/")
+	public void deleteAllShop(){
+		//BORRAR TODAS LAS TIENDAS FUEGOOOO
+		shopServiceImp.deleteAllShop();	
 	}
 	
 

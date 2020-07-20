@@ -12,5 +12,7 @@ public interface IPictureService {
 	public Picture pictureXID(int id);
 	public Picture updatePicture (Picture picture);
 	public void deletePicture(int id);
+	public boolean pictureXShop(Shop shop);
+	public void deleteAllPicture();
 
 }

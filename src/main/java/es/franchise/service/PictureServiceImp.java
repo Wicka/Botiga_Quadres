@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import es.franchise.dao.IPictureDAO;
 import es.franchise.dto.Picture;
+import es.franchise.dto.Shop;
 
 @Service
 public class PictureServiceImp implements IPictureService {
@@ -37,8 +38,26 @@ public class PictureServiceImp implements IPictureService {
 
 	@Override
 	public void deletePicture(int id) {		
+	
 		iPictureDao.deleteById(id);
 	}
+
+	@Override	
+	public boolean pictureXShop(Shop shop) {
+		Boolean exist=true;
+		//BUSCAR EN TABLA PICTURES SI EXISTE SHOP EN EL CAMPO idtiendas
+		
+	//	iPictureDao.exists(shop.getId());
+		return exist;
+	}
+
+	@Override
+	public void deleteAllPicture() {
+		iPictureDao.deleteAll();
+		
+	}
+
+
 
 
 

@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="pintores")
+@Table (name="artists")
 public class Artist {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
-	@Column(name="idpintores")
+	@Column(name="idartist")
 	private int id;
 	
-	@Column(name="nombre")
+	@Column(name="name")
 	private String name;
 	
 	public Artist() {

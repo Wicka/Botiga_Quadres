@@ -31,7 +31,7 @@ public class PictureController {
 	
 	
 	@GetMapping("/pictures")
-	public List<Picture> showPictures(){
+	public List<Picture> showPictures(){	
 		return pictureServiceImp.showPictures();
 	}
 	
@@ -68,8 +68,7 @@ public class PictureController {
 	}
 	
 	@DeleteMapping ("/pictures/{id}")
-	public void deletePicture(@PathVariable(name="id")Integer id) {
-		
+	public void deletePicture(@PathVariable(name="id")Integer id) {		
 		pictureServiceImp.deletePicture(id);
 	}
 }

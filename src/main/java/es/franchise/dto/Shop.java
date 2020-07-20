@@ -2,8 +2,10 @@ package es.franchise.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,27 +13,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table (name="tiendas")
+@Table (name="shops")
 public class Shop {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
-	@Column(name="idtiendas")
+	@Column(name="idshop")
 	private int id;
 	
-	@Column(name = "nombre")	
+	@Column(name = "name")	
 	private String name;
 	
-	@Column(name = "capacidad")
+	@Column(name = "capacity")
 	private int capacity;
 	
 
-  //  @OneToMany
- //   @JoinColumn(name="idtiendas")
-  //  private List<Picture> pictures;
+    @OneToMany (mappedBy="shop", cascade=CascadeType.ALL)
+    private List<Picture> pictures;
 
-	
+    
 	
 	
 	/**
@@ -46,14 +49,33 @@ public class Shop {
 	public Shop() {
 		
 	}
-/*	
-	public Shop(int id, String name, int capacity, List<Picture> pictures, List<Artist> artists) {
+	
+	//public Shop(int id, String name, int capacity) {
+		public Shop(int id, String name, int capacity, List<Picture> pictures) {
+
+			this.id = id;
+			this.name = name;
+			this.capacity = capacity;
+			this.pictures=pictures;
+		}
+	
+/*	public Shop(int id, String name, int capacity, List<Picture> pictures) {
+	//public Shop(int id, String name, int capacity, List<Picture> pictures, List<Artist> artists) {
+			
 		super();
 		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
 		this.pictures = pictures;
-		this.artists = artists;
+	//	this.artists = artists;
+	}
+*/
+/*	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
 	}
 */
 	public int getId() {
@@ -86,27 +108,22 @@ public class Shop {
 	
 	@Override
 	public String toString() {
-	//	return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity + "pictures" + pictures +  "]";
-		return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity  +  "]";
+		return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity + "pictures" + pictures +  "]";
+		//return "Shop [id=" + id + ", name=" + name + ", capacity=" + capacity  +  "]";
 	}
 	
-/*	public List<Picture> getPictures() {
+	@JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Picture")
+	public List<Picture> getPictures() {
 		return pictures;
 	}
 	public void setPictures(List<Picture> pictures) {
 		this.pictures = pictures;
 	}
-	*/
 	
 	
-	public Shop(int id, String name, int capacity) {
-	//public Shop(int id, String name, int capacity, List<Picture> pictures) {
-
-		this.id = id;
-		this.name = name;
-		this.capacity = capacity;
-//		this.pictures=pictures;
-	}
+	
+	
 
 	
 
