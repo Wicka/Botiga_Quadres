@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.franchise.dto.Artist;
+import es.franchise.dto.Picture;
 import es.franchise.dto.Shop;
 import es.franchise.service.ArtistServiceImp;
 
@@ -23,11 +24,17 @@ public class ArtistController {
 	@Autowired
 	ArtistServiceImp artistServiceImp;
 	
-	@RequestMapping ("/hola_a")
-	public String hola_a(){
-		return "HOLA DESDE CONTROLLER ARTIST";
-	}
+	//--------------------------------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------  CALL TO METHODS
+	//--------------------------------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------
+
 	
+	
+	//---------------------------------------------------------------------
+	//----------------------------------------------  GET METHODS (VIEWS)
+	//---------------------------------------------------------------------
 	
 	@GetMapping("/artists")
 	public List<Artist> showArtists(){
@@ -41,11 +48,25 @@ public class ArtistController {
 		return artistxid;
 	}
 
+	@GetMapping("/artists/{id}/pictures")
+	public List<Picture> showAllPicturesXArtistXID(@PathVariable(name="id") Integer id) {
+		return artistServiceImp.showAllPicturesXArtistXID(id);
+	}
+	
+	//----------------------------------------------------------------------
+	//--------------------------------------------  POST METHOD  (NEW ARTIST)
+	//----------------------------------------------------------------------
+
 	
 	@PostMapping("/artists")
 	public Artist saveShop(@RequestBody Artist artist) {
 		return artistServiceImp.saveArtist(artist);
 	}
+	
+	//-----------------------------------------------------------------------
+	//----------------------------------  PUT METHOD (UPDATE ONE ARTIST BY ID)
+	//-----------------------------------------------------------------------
+		
 	
 	@PutMapping("/artists/{id}")
 	public Artist updateArtist(@PathVariable(name="id")Integer id, @RequestBody Artist artist) {
@@ -66,6 +87,11 @@ public class ArtistController {
 		return artist_update;
 	}
 	
+	//--------------------------------------------------------------------
+	//------------------------------------  DELETE METHOD   (DELETE ARTIST)
+	//----------------------CASCADE IN BBDD ------------------------------
+	//--------------------------------------------------------------------
+
 	@DeleteMapping("/artists/{id}")
 	public void deleteArtist(@PathVariable(name="id") Integer id) {
 		artistServiceImp.deleteArtist(id);		

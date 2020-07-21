@@ -15,70 +15,55 @@ public class ShopServiceImp implements IShopService {
 	
 	@Autowired
 	IShopDAO iShopDao;
+	
+
+	//---------------------------------------------------------------------
+	//----------------------------------------------  GET METHODS (VIEWS)
+	//---------------------------------------------------------------------
+	
 
 	@Override
-	public List<Shop> showShops() {
-		
+	public List<Shop> showShops() {		
 		return iShopDao.findAll();
-	}
-
-	@Override
-	public Shop saveShop(Shop shop) {		
-		return iShopDao.save(shop);
 	}
 
 	@Override
 	public Shop shopXID(int id) {		
 		return iShopDao.findById(id).get();
 	}
+	
+	@Override
+	public List<Picture> showAllPicturesXShopXID(int id) {		
+		return iShopDao.findById(id).get().getPictures();
+	}
 
+	//----------------------------------------------------------------------
+	//--------------------------------------------  POST METHOD  (NEW SHOP)
+	//----------------------------------------------------------------------
+
+	@Override
+	public Shop saveShop(Shop shop) {		
+		return iShopDao.save(shop);
+	}
+
+	//-----------------------------------------------------------------------
+	//----------------------------------  PUT METHOD (UPDATE ONE SHOP)
+	//-----------------------------------------------------------------------
+	
 	@Override
 	public Shop updateShop(Shop shop) {
 		return iShopDao.save(shop);
 	}
 	
+	
+	//--------------------------------------------------------------------
+	//------------------------------------  DELETE METHOD   (DELETE SHOP BY ID)
+	//----------------------CASCADE IN BBDD ------------------------------
+	//--------------------------------------------------------------------
+
 	@Override
 	public void deleteShop(int id) {				
-			iShopDao.deleteById(id);
-			
-	}
-	
-	@Override
-	public void deleteShopEmpty(int id) {
-		// SI EL ID DE LA TIENDA ESTA EN LA TABLA PICTURES NO SE PODRA BORRAR
-		
-		Boolean existShop=true,
-				existArtist=true;		
-		
-		
-		PictureServiceImp pictureServiceImp = null;
-		ArtistServiceImp artistServiceImp = null;
-		
-		Shop shop = shopXID(id) ;
-			
-		existShop = pictureServiceImp.pictureXShop(shop);
-		existArtist = artistServiceImp.artistXShop(shop);
-		
-		if(existShop==false && existArtist==false) {
-			
-			iShopDao.deleteById(id);
-			
-		}
-	}
-	
-	@Override
-	public void deleteAllShop() {
-		
-			PictureServiceImp pictureServiceImp = null;
-			ArtistServiceImp artistServiceImp = null;
-		
-			pictureServiceImp.deleteAllPicture();
-			artistServiceImp.deleteAllArtist();
-			
-			iShopDao.deleteAll();			
-		}
-	
-
-	
+		iShopDao.deleteById(id);			
+	}	
 
 }

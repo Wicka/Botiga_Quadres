@@ -11,9 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table (name="pictures")
 public class Picture {
+
+	// ---------------------------------------------------------------------------------------------------
+	// ---------------------------------- ATRIBUTES / FIELDS --------------------------------------------
+	// ---------------------------------------------------------------------------------------------------
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementa
@@ -31,13 +37,32 @@ public class Picture {
 	
 	@ManyToOne
     @JoinColumn(name="idartist")
-    private Artist artist;
+	private Artist artist;
 	
 	@ManyToOne
     @JoinColumn(name="idshop")
     private Shop shop;
 	
 
+	/**
+	 * @param id   		-- tbl pictures 	(idpicture)
+	 * @param title		-- tbl pictures 	(title)
+	 * @param pvp		-- tbl pictures 	(pvp)
+	 * @param date		-- tbl pictures 	(date)
+	 * @param artits	-- tbl artist		(idartist)
+	 * @param shop		-- tbl shop			(idshop)
+	 */
+	
+
+	// -----------------------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------
+		
+	// ---------------------------------- BUILDERS ---------------------------------------------------------
+
+	
+	public Picture() {	
+	}
+	
 	public Picture(int id, String title, double pvp, Date date, Artist artist, Shop shop) {
 		super();
 		this.id = id;
@@ -48,57 +73,70 @@ public class Picture {
 		this.shop = shop;
 	}
 	
-	public Picture() {
-		
-	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// --------------------------------     GETTERS     ---------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
 
+	
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getTitle() {
 		return title;
+	}
+	
+	public double getPvp() {
+		return pvp;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+	
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+	
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// --------------------------------     SETTERS     ---------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------------
+
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public double getPvp() {
-		return pvp;
-	}
-
 	public void setPvp(double pvp) {
 		this.pvp = pvp;
-	}
-
-	public Date getDate() {
-		return date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public Artist getArtist() {
-		return artist;
-	}
-
 	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
 
-	public Shop getShop() {
-		return shop;
-	}
 
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
+	
+	
+	// ------------------------------------------ TO STRING ----------------------------------------------------------
+	
 
 	@Override
 	public String toString() {

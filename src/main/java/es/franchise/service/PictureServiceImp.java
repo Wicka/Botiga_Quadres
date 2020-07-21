@@ -15,50 +15,47 @@ public class PictureServiceImp implements IPictureService {
 	@Autowired
 	IPictureDAO iPictureDao;
 	
+	//---------------------------------------------------------------------
+	//----------------------------------------------  GET METHODS (VIEWS)
+	//---------------------------------------------------------------------
+					
 	@Override
-	public List<Picture> showPictures() {
-		
+	public List<Picture> showPictures() {		
 		return iPictureDao.findAll();
 	}
+	
+	@Override
+	public Picture pictureXID(int id) {		
+		return iPictureDao.findById(id).get();
+	}
+
+	//----------------------------------------------------------------------
+	//--------------------------------------------  POST METHOD  (NEW PICTURE)
+	//----------------------------------------------------------------------
 
 	@Override
 	public Picture savePicture(Picture picture) {
 		return iPictureDao.save(picture);
 	}
 
-	@Override
-	public Picture pictureXID(int id) {		
-		return iPictureDao.findById(id).get();
-	}
+	//-----------------------------------------------------------------------
+	//----------------------------------  PUT METHOD (UPDATE ONE PICTURE)
+	//-----------------------------------------------------------------------
+		
 
 	@Override
 	public Picture updatePicture(Picture picture) {
 		return iPictureDao.save(picture);
 	}
+	
+	//--------------------------------------------------------------------
+	//------------------------------------  DELETE METHOD   (DELETE SHOP BY ID)
+	//----------------------CASCADE IN BBDD ------------------------------
+	//--------------------------------------------------------------------
 
 	@Override
-	public void deletePicture(int id) {		
-	
+	public void deletePicture(int id) {			
 		iPictureDao.deleteById(id);
 	}
-
-	@Override	
-	public boolean pictureXShop(Shop shop) {
-		Boolean exist=true;
-		//BUSCAR EN TABLA PICTURES SI EXISTE SHOP EN EL CAMPO idtiendas
-		
-	//	iPictureDao.exists(shop.getId());
-		return exist;
-	}
-
-	@Override
-	public void deleteAllPicture() {
-		iPictureDao.deleteAll();
-		
-	}
-
-
-
-
 
 }

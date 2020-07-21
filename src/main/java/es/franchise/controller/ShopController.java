@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.franchise.dto.Picture;
 import es.franchise.dto.Shop;
 import es.franchise.service.ShopServiceImp;
 
@@ -22,15 +23,24 @@ public class ShopController {
 	@Autowired
 	ShopServiceImp shopServiceImp;
 	
-	@RequestMapping ("/hola_s")
-	public String hola_s(){
-		return "HOLA DESDE CONTROLLER SHOP";
-	}
+	//--------------------------------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------  CALL TO METHODS
+	//--------------------------------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------------------------------
+
+	
+	
+	//---------------------------------------------------------------------
+	//----------------------------------------------  GET METHODS (VIEWS)
+	//---------------------------------------------------------------------
 	
 	@GetMapping("/shops")
 	public List<Shop> showShops(){
 		return shopServiceImp.showShops();
 	}
+	
+	
 	@GetMapping("/shops/{id}")
 	public Shop shopXID(@PathVariable(name="id")Integer id) {
 		Shop shopxid = new Shop();
@@ -38,11 +48,25 @@ public class ShopController {
 		return shopxid;		
 	}
 	
+	@GetMapping("/shops/{id}/pictures")
+	public List<Picture> showAllPicturesXShopXID(@PathVariable(name="id") Integer id) {
+		return shopServiceImp.showAllPicturesXShopXID(id);
+	}
+	
+	//----------------------------------------------------------------------
+	//--------------------------------------------  POST METHOD  (NEW SHOP)
+	//----------------------------------------------------------------------
+
 	@PostMapping("/shops")
 	public Shop saveShop(@RequestBody Shop shop) {
 		return shopServiceImp.saveShop(shop);
 	}
 	
+	//-----------------------------------------------------------------------
+	//----------------------------------  PUT METHOD (UPDATE ONE SHOP BY ID)
+	//-----------------------------------------------------------------------
+	
+
 	@PutMapping("/shops/{id}")
 	public Shop updateShop (@PathVariable(name="id") Integer id ,@RequestBody Shop shop){
 		
@@ -60,30 +84,17 @@ public class ShopController {
 		
 	}
 	
+	//--------------------------------------------------------------------
+	//------------------------------------  DELETE METHOD   (DELETE SHOP)
+	//----------------------CASCADE IN BBDD ------------------------------
+	//--------------------------------------------------------------------
+
 	
 	@DeleteMapping("/shops/{id}")
 	public void deleteShop(@PathVariable(name="id")Integer id){
-		shopServiceImp.deleteShop(id);
-		//NO MIRO SI LA TIENDA TIENE CUADROS...SI EXISTEN CUADROS EN LA TBL CUADROS ASIGNADOS A ESA TIENDA
-	
-		
+		shopServiceImp.deleteShop(id);		
 	}
 	
-	@DeleteMapping("/shopsEmpty/{id}")
-	public void deleteShopIfEmpty(@PathVariable(name="id")Integer id){
-		
-		shopServiceImp.deleteShopEmpty(id);		
-		//RECORRO TABLA CUADROS EN BUSCA DEL ID DE TIENDA POR SI LA TIENDA NO ESTA VACIA ANTES DE ELIMINARNA
-		
-		
-	}
-	
-	
-	@DeleteMapping("/shopsAllScape/")
-	public void deleteAllShop(){
-		//BORRAR TODAS LAS TIENDAS FUEGOOOO
-		shopServiceImp.deleteAllShop();	
-	}
 	
 
 }
